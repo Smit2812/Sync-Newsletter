@@ -1,186 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sync — Tech Newsletter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sync — Tech Newsletter</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+:root {
+  --bg: #020617;
+  --card: rgba(15, 23, 42, 0.85);
+  --border: #1e293b;
+  --primary: #38bdf8;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+}
 
-    body {
-      height: 100vh;
-      background: radial-gradient(circle at top, #0a0f1f, #000);
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* Animated background grid */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        0deg,
-        rgba(0, 153, 255, 0.05) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        90deg,
-        rgba(0, 153, 255, 0.05) 1px,
-        transparent 1px
-      );
-      background-size: 40px 40px;
-      animation: moveGrid 20s linear infinite;
-      z-index: 0;
-    }
+/* BODY */
+body {
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: radial-gradient(circle at top, #0f172a, #020617 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  color: var(--text);
+}
 
-    @keyframes moveGrid {
-      from {
-        transform: translate(0, 0);
-      }
-      to {
-        transform: translate(-40px, -40px);
-      }
-    }
+/* ANIMATED GRID BACKGROUND */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridMove 25s linear infinite;
+  z-index: 0;
+}
 
-    .container {
-      position: relative;
-      z-index: 1;
-      background: rgba(10, 15, 31, 0.85);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 50px;
-      width: 90%;
-      max-width: 420px;
-      text-align: center;
-      box-shadow: 0 0 40px rgba(0, 153, 255, 0.3);
-      animation: fadeUp 1.2s ease;
-    }
+@keyframes gridMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-40px,-40px); }
+}
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+/* MAIN CARD */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  animation: cardEnter 1.2s ease forwards;
+}
 
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 36px;
-      letter-spacing: 2px;
-      color: #00aaff;
-      margin-bottom: 15px;
-      text-shadow: 0 0 12px rgba(0, 170, 255, 0.8);
-    }
+/* CARD ENTRANCE */
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
-    .subtitle {
-      font-size: 15px;
-      line-height: 1.6;
-      color: #cbd5ff;
-      margin-bottom: 35px;
-    }
+/* FLOATING ANIMATION */
+.card {
+  animation: cardEnter 1.2s ease forwards, float 6s ease-in-out infinite;
+}
 
-    .form {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
 
-    input {
-      flex: 1;
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 170, 255, 0.4);
-      background: rgba(0, 0, 0, 0.4);
-      color: #fff;
-      outline: none;
-      font-size: 14px;
-      transition: 0.3s;
-    }
+/* LOGO */
+.logo {
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--primary);
+  margin-bottom: 16px;
+  text-shadow: 0 0 18px rgba(56,189,248,0.7);
+}
 
-    input::placeholder {
-      color: #8899cc;
-    }
+/* TEXT */
+.subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
 
-    input:focus {
-      border-color: #00aaff;
-      box-shadow: 0 0 12px rgba(0, 170, 255, 0.5);
-    }
+/* FORM */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
 
-    button {
-      padding: 14px 22px;
-      border-radius: 12px;
-      border: none;
-      background: linear-gradient(135deg, #00aaff, #0066ff);
-      color: #fff;
-      font-size: 14px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: 0.3s;
-      box-shadow: 0 0 20px rgba(0, 153, 255, 0.6);
-    }
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(2,6,23,0.8);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(0, 153, 255, 0.9);
-    }
+input::placeholder {
+  color: #64748b;
+}
 
-    .note {
-      font-size: 12px;
-      color: #8899cc;
-      margin-top: 10px;
-    }
+input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 18px rgba(56,189,248,0.4);
+}
 
-    footer {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #6677aa;
-      opacity: 0.8;
-    }
+/* BUTTON */
+button {
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: #020617;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 25px rgba(56,189,248,0.6);
+}
 
-  </style>
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(56,189,248,0.9);
+}
+
+/* FOOTER */
+.note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+  .card {
+    padding: 32px 22px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-    <div class="logo">SYNC</div>
+<div class="card">
+  <div class="logo">SYNC</div>
 
-    <div class="subtitle">
-      stay aligned with tech, explained simply, twice a week
-    </div>
-
-    <!-- Replace action URL with Beehiiv form action later -->
-    <form class="form">
-      <input type="email" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
-    </form>
-
-    <div class="note">
-      No spam. Unsubscribe anytime.
-    </div>
-
-    <footer>
-      © 2026 Sync Newsletter
-    </footer>
+  <div class="subtitle">
+    stay aligned with tech, explained simply twice a week
   </div>
+
+  <!-- Replace action with Beehiiv later -->
+  <form>
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+
+  <div class="note">No spam. Unsubscribe anytime.</div>
+
+  <div class="footer">© 2026 Sync Newsletter</div>
+</div>
 
 </body>
 </html>
