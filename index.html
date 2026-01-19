@@ -31,7 +31,6 @@ body {
   background: radial-gradient(circle at top, #0f172a, #020617 65%);
   font-family: Inter, system-ui, sans-serif;
   color: var(--text);
-
   display: grid;
   place-items: center;
   padding: 24px;
@@ -90,48 +89,14 @@ body::before {
   font-size: clamp(14px, 3.8vw, 15px);
   line-height: 1.6;
   color: var(--muted);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
-form {
-  display: grid;
-  gap: 14px;
-}
-
-input {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: rgba(2,6,23,0.9);
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 14px;
-}
-
-input::placeholder {
-  color: #64748b;
-}
-
-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 16px rgba(56,189,248,0.45);
-}
-
-button {
-  padding: 14px;
-  border-radius: 12px;
+/* Beehiiv iframe fix */
+.beehiiv-embed {
+  width: 100% !important;
+  height: 206px;
   border: none;
-  background: linear-gradient(135deg, #38bdf8, #2563eb);
-  color: #020617;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 0 24px rgba(56,189,248,0.6);
-}
-
-button:active {
-  transform: scale(0.98);
 }
 
 .note {
@@ -145,12 +110,6 @@ button:active {
   font-size: 12px;
   color: #64748b;
 }
-
-@media (min-width: 768px) {
-  .card {
-    padding: 42px 36px;
-  }
-}
 </style>
 </head>
 
@@ -163,24 +122,15 @@ button:active {
     stay aligned with tech, explained simply twice a week
   </div>
 
-  <!-- Beehiiv form connected -->
- <a 
-  href="https://subscribe.beehiiv.com/pub_d3bf00b2-834c-43e7-a517-fc40e0b39a07"
-  target="_blank"
-  style="
-    display: block;
-    padding: 14px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #38bdf8, #2563eb);
-    color: #020617;
-    font-weight: 600;
-    text-decoration: none;
-    box-shadow: 0 0 24px rgba(56,189,248,0.6);
-  "
->
-  Subscribe
-</a>
-
+  <!-- Beehiiv Embedded Form -->
+  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+  <iframe 
+    src="https://subscribe-forms.beehiiv.com/6992b25e-e964-4173-bedc-ed62d5dd1c1a"
+    class="beehiiv-embed"
+    data-test-id="beehiiv-embed"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
 
   <div class="note">No spam. Unsubscribe anytime.</div>
   <div class="footer">© 2026 Sync Newsletter</div>
