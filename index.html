@@ -164,9 +164,15 @@ button:active {
   </div>
 
   <!-- Beehiiv form connected -->
-  <form action="https://synctechnewsletter.beehiiv.com/subscribe" method="post">
+  <form 
+  action="https://embeds.beehiiv.com/subscribe" 
+  method="post" 
+  target="_blank"
+>
+
     <input type="email" name="email" placeholder="Enter your email" required />
-    <button type="submit">Subscribe</button>
+   <input type="hidden" name="publication_id" value="synctechnewsletter">
+ <button type="submit">Subscribe</button>
   </form>
 
   <div class="note">No spam. Unsubscribe anytime.</div>
